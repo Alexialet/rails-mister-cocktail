@@ -19,6 +19,9 @@ class CocktailsController < ApplicationController
     else
       render :new
     end
+  rescue  Cloudinary::CarrierWave::UploadError
+    @cocktail.errors.add(:photo, 'file too large')
+    render :new
   end
 
   def cocktail_params
