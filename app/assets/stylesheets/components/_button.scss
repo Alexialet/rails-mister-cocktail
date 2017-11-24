@@ -1,0 +1,16 @@
+.btn-medium {
+  border: 1px solid #999999;
+  padding: 10px 15px;
+  border-radius: 15px;
+  opacity: 0.6;
+  max-width: 120px;
+  text-align: center;
+  font-size: 15px;
+  background-color: #0D1B4C;
+  text-color: white;
+}
+.btn-medium:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: #3F6699;
+}

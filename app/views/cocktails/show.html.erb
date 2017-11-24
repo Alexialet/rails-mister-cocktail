@@ -1,21 +1,23 @@
-
-<h2><%= @cocktail.name %> </h2>
-
-<% if @cocktail.doses  %>
-<h3>Ingredients</h3>
-<% doses = @cocktail.doses  %>
-<ul>
-  <% doses.each do |dose|  %>
-  <li>
-    <%= dose.description  %>
-    <%= dose.ingredient.name  %> <br>
-    <%= link_to 'remove', dose_path(@cocktail, dose),
-    method: :delete, data: {confirm: "Are your sure?"} %> <br>
-  </li>
-  <% end  %>
-</ul>
-<% end  %>
-<%= link_to "Add a dose", new_cocktail_dose_path(@cocktail) %>
-<%= link_to "Back to list", cocktails_path %>
+<% if @cocktail.photo.stored_version  %>
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%),url('<%= cl_image_path(@cocktail.photo) %>');">
+<% else %>
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%),url('<%= cl_image_path('mojito-500_cypmat') %>');">
+<% end %>
+</div>
+<div class="container">
+  <h3>Ingredients</h3>
+  <% doses = @cocktail.doses  %>
+  <ul>
+    <% doses.each do |dose|  %>
+    <li>
+      <%= dose.description  %>
+      <%= dose.ingredient.name  %>
+      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, dose_path(@cocktail, dose),
+      method: :delete, data: {confirm: "Are your sure?"} %> <br>
+    <% end  %>
+  <%= link_to "Add dose", new_cocktail_dose_path(@cocktail) %>
+  </ul>
+</div>
+  <div class="btn-medium"><%= link_to "Back to list", cocktails_path %></div>
 
 
